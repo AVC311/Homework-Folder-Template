@@ -1,0 +1,47 @@
+#include <iostream>
+#include <bitset>
+#include <cstring>
+#include <string>
+#include <cstdint>
+using namespace std;
+
+string toBinary(int value) 
+{
+    bitset<32> bs(static_cast<unsigned long>(value));
+    return bs.to_string();
+}
+
+string toBinary(char value) 
+{
+    bitset<8> bs(static_cast<unsigned long>(value));
+    return bs.to_string();
+}
+
+string toBinary(float value) 
+{
+
+    uint32_t binary;
+    memcpy(&binary, &value, sizeof(binary));
+
+    bitset<32> bs(binary);
+    return bs.to_string();
+}
+
+int main() 
+{
+    char c;
+    int i;
+    float f;
+
+    cout << "Enter character: ";
+    cin >> c;
+    cout << "Binary of char '" << c << "': " << toBinary(c) << endl;
+
+    cout << "Enter integer: ";
+    cin >> i;
+    cout << "Binary of integer " << i << ": " << toBinary(i) << endl;
+
+    cout << "Enter float: ";
+    cin >> f;
+    cout << "Binary of float " << f << ": " << toBinary(f) << endl;
+}

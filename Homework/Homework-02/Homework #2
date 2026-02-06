@@ -1,0 +1,14 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() 
+{
+    string country;
+
+    cout << "Which country do you live in? ";
+
+    getline(cin, country);
+
+    cout << "I've heard great things about " << country << ". That's a lovely place!";
+}

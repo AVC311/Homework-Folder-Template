@@ -1,0 +1,127 @@
+//P1//
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+    int minx = -10;
+    int maxx = 10;
+    int miny = -10;
+    int maxy = 10;
+
+void Rmap()
+{
+    minx = -10;
+    maxx = 10;
+    miny = -10;
+    maxy = 10;
+}
+
+bool valid(int x, int y)
+{
+    if (x >= minx && x <= maxx && y >= miny && y <= maxy)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+int main()
+{
+    srand(static_cast<unsigned int>(time(nullptr)));
+    Rmap();
+    string name;
+    int x, y;
+    cout << "Enter your location point (x,y): ";
+    cin >> x >> y;
+    if (valid(x,y))
+    {
+        cout << "Your location (" << x << " , " << y << ") is within map boundaries" << endl;
+    }
+    else
+    {
+      cout << "Your location (" << x << " , " << y << ") is not within map boundaries" << endl;
+    }
+}
+//P2//
+#include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
+
+bool leap(int year)
+{
+return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+int DM (int month, int year)
+{
+    if (month == 2)
+    {
+        return leap(year) ? 29:28;
+    }
+    else if (month == 4 || month == 6 || month == 9 || month == 11)
+    {
+        return 30;
+    }
+    else
+    {
+        return 31;
+    }
+}
+int starting(int year)
+{
+    int startday = 6;
+    int daydiff = 0;
+    if (year >= 2000)
+    {
+        for (int i = 2000; i < year; ++i)
+        {
+            daydiff += leap(i) ? 366:365;
+        }
+    }
+    else
+    {
+        for (int i = 1999; i >= year; --i)
+        {
+            daydiff -= leap(i) ? 366:365;
+        }
+    }
+    return (startday + daydiff % 7 + 7) % 7;
+}
+void Calendar(int month, int year, int& startday)
+{
+    string m[] = {"January ", "Febuary ", "March ", "April ", "May ", "June ", "July ", "August ", "September ", "October ", "November ", "December "};
+    int day = DM(month, year);
+    cout << "\n\n       " << m[month - 1] << "" << year << endl;
+    cout << "  Sun  Mon  Tue  Wed  Thu  Fri  Sat" << endl;
+    for (int i=0; i < startday; ++i)
+    {
+        cout << setw(5) << "";
+    }
+    for (int d = 1; d <= day; ++d)
+    {
+        cout << setw(5) << d;
+        if ((d+startday) % 7 == 0 || d == day)
+        {
+            cout << endl;
+        }
+    }
+    startday = (startday + day) % 7;
+}
+int main()
+{
+    int year;
+    cout << "Enter year (e.g., 1900 or 2450): ";
+    cin >> year;
+    int startday = starting(year);
+    for (int month = 1; month <= 12; ++month)
+    {
+        Calendar(month, year, startday);
+    }
+    return 0;
+}
+//I know I won't get points but had to prove I can do it//

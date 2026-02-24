@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    char message[] = {'A', ' ', 'r', 'e', 'a', 'l', 'l', 'y', ' ', 'b', 'a', 'd', ' ', 'j', 'o', 'k','e'};
+    int vowel_count = 0;
+    for (int i = 0; i < sizeof(message)/sizeof(message[0]); ++i)
+    {
+        char x = tolower(message[i]);
+        switch (x)
+        {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+            vowel_count++;
+            break;
+            default:
+            break;
+        }
+    }
+    cout << "Vowel count: "<< vowel_count << endl;
+}

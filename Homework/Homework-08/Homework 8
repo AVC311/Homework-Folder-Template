@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Adventure
+{
+    public:
+    void attack()
+    {
+        cout << "Adventure nyeh!" << endl;
+    }
+    void attack(int damage)
+    {
+        cout << "Adventurer attacks! Inflicts " << damage << " damage" << endl;
+    }
+    void attack(string spell, int damage)
+    {
+        cout << "Adventurer uses " << spell << endl << damage << " damage! " << endl;
+    }
+};
+
+int main()
+{
+    Adventure player;
+    player.attack();
+    player.attack(5);
+    player.attack("Domain Expansion: Gun", 420);
+    cout << "Rock - Congradurations u one" << endl;
+    cout << "'It appears you gave it permanent brain damage' - Rock is now your friend (Cannot remove from party)";
+}

@@ -1,0 +1,79 @@
+#include <iostream>
+#include <stdexcept>
+using namespace std;
+
+class CustomException : public exception
+{
+    public:
+    const char*what() const noexcept override
+    {
+        return "Error in nestedFunction";
+    }
+};
+
+void nestedFunction()
+{
+    throw CustomException();
+}
+void outerFunction()
+{
+try
+{
+    nestedFunction();
+}
+catch(const CustomException& e)
+{
+    cout << "Caught exception in outerFunction: " << e.what() << endl;
+    throw;
+}
+}
+
+double divide(int numerator, int denominator)
+{
+    if(denominator == 0)
+    {
+        throw invalid_argument("Division by zero is not allowed");
+    }
+    return static_cast<double>(numerator)/denominator;
+}
+
+int accessArray(int arr[], int size, int index)
+{
+    if(index < 0||index >= size)
+    {
+        throw out_of_range("Index out of bounds.");
+    }
+    return arr[index];
+}
+
+int main()
+{
+    try
+    {
+        outerFunction();
+    }
+    catch(const CustomException& e)
+    {
+        cerr << "Caught rethrown exception in main: " << e.what() << endl;
+    }
+    
+    try
+    {
+       cout << "Numerator: 10" << endl << "Denominator: 0" << endl; 
+       divide(10,0);
+    }catch (const exception& e)
+    {
+        cerr << "Error: " << e.what() << endl;
+    }
+
+    int myArr[] = {5,8,4};
+    try
+    {
+        cout << "Array size: 3" << endl << "Enter index to acess: 10" << endl;
+        accessArray(myArr, 3, 10);
+    }catch (const exception& e)
+    {
+        cerr << "Error: " << e.what() << endl;
+    }
+
+}

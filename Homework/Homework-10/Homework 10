@@ -1,0 +1,154 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Pokemon
+{
+    public:
+    virtual void attack() const = 0;
+    virtual void defend() const = 0;
+    virtual void evolve() const = 0;
+};
+
+class Electric : public Pokemon
+{
+    public:
+    string type = "Electric";
+    void getType() const { cout << "Type: " << type << endl; }
+};
+
+class Grass : public Pokemon
+{
+    public:
+    string type = "Grass";
+    void getType() const { cout << "Type: " << type << endl; }
+};
+
+class Fire : public Pokemon
+{
+    public:
+    string type = "Fire";
+    void getType() const { cout << "Type: " << type << endl; }
+};
+
+class Water : public Pokemon
+{
+    public:
+    string type = "Water";
+    void getType() const { cout << "Type: " << type << endl; }
+};
+
+class Pikachu : public Electric 
+{
+public:
+    Pikachu(int level) 
+    {
+        cout << "Level " << level << endl;
+    }
+
+    void attack() const override 
+    {
+        cout << "Pickachu uses Thunderbolt!" << endl;
+    }
+    void defend() const override 
+    {
+        cout << "Pickachu takes Damage!" << endl << "Pickachu fainted" << endl;
+    }
+    void evolve() const override 
+    {
+        cout << "What? Pickachu is evolving!" << endl << "Congratulations! Your Pickachu evolved into Raichu" << endl << endl;
+    }
+};
+
+class Bulbasaur : public Grass 
+{
+public:
+    Bulbasaur(int level)
+    {
+        cout << "Level " << level << endl;
+    }
+
+    void attack() const override 
+    {
+        cout << "Bulbasaur uses Vine Whip!" << endl;
+    }
+    void defend() const override 
+    {
+        cout << "Bulbasaur toughed it out so you wouldn't feel sad!" << endl;
+    }
+    void evolve() const override 
+    {
+        cout << "What? Bulbasaur is evolving!" << endl << "Congratulations! Your Bulbasaur evolved into Ivysaur" << endl;
+        cout << "What? Ivysaur is evolving!" << endl << "Congratulations! Your Ivysaur evolved into Venusaur" << endl << endl;
+    }
+};
+
+class Charmander : public Fire 
+{
+public:
+    Charmander(int level)
+    {
+        cout << "Level " << level << endl;
+    }
+
+    void attack() const override 
+    {
+        cout << "Charmander uses Flamethrower!" << endl;
+    }
+    void defend() const override 
+    {
+        cout << "Charmander dodges!" << endl;
+    }
+    void evolve() const override 
+    {
+        cout << "What? Charmander is evolving!" << endl << "Congratulations! Your Charmander evolved into Charmeleon" << endl;
+        cout << "What? Charmeleon is evolving!" << endl << "Congratulations! Your Charmeleon evolved into Charizard" << endl << endl;
+    }
+};
+
+class Squirtle : public Water 
+{
+public:
+    Squirtle(int level)
+    {
+        cout << "Level " << level << endl;
+    }
+
+    void attack() const override 
+    {
+        cout << "Squirtle uses Hydro Pump!" << endl;
+    }
+    void defend() const override 
+    {
+        cout << "Squirtle tanked!" << endl;
+    }
+    void evolve() const override 
+    {
+        cout << "What? Squirtle is evolving!" << endl << "Congratulations! Your Squirtle evolved into Wartortle" << endl;
+        cout << "What? Wartortle is evolving!" << endl << "Congratulations! Your Wartortle evolved into Blastoise" << endl;
+    }
+};
+
+int main()
+{
+Pikachu pikachu(10);
+pikachu.getType();
+pikachu.attack();
+pikachu.defend();
+pikachu.evolve();
+Bulbasaur bulbasaur(36);
+bulbasaur.getType();
+bulbasaur.attack();
+bulbasaur.defend();
+bulbasaur.evolve();
+Charmander charmander(36);
+charmander.getType();
+charmander.attack();
+charmander.defend();
+charmander.evolve();
+Squirtle squirtle(36);
+squirtle.getType();
+squirtle.attack();
+squirtle.defend();
+squirtle.evolve();
+}
